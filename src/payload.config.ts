@@ -1,4 +1,6 @@
 import { postgresAdapter } from '@payloadcms/db-postgres';
+import { en } from '@payloadcms/translations/languages/en';
+import { fr } from '@payloadcms/translations/languages/fr';
 import path from 'path';
 import { buildConfig } from 'payload';
 import sharp from 'sharp';
@@ -37,6 +39,10 @@ export default buildConfig({
   cors: [getServerSideURL()].filter(Boolean),
   globals: [Header, Footer, SiteSettings],
   editor: defaultLexical,
+  i18n: {
+    fallbackLanguage: 'fr',
+    supportedLanguages: { en, fr },
+  },
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URL || '',

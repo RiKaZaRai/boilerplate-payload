@@ -5,7 +5,7 @@ Boilerplate CMS Payload 3.x + Next.js + PostgreSQL pour 4Runners.
 ## Stack
 
 - **CMS**: Payload CMS ^3.79.0
-- **Framework**: Next.js ^15.4.11 (App Router, Turbopack ready)
+- **Framework**: Next.js 16.2.0-canary.54 (App Router, Turbopack enabled)
 - **React**: 19
 - **TypeScript**: 5.7+
 - **Database**: PostgreSQL (always, via @payloadcms/db-postgres + Drizzle ORM)
@@ -31,6 +31,15 @@ src/
   plugins/               # Plugin configs, each in its own file
   seed/                  # Database seed script
   utilities/             # Helper functions (getURL, generatePreviewPath)
+```
+
+### Live Preview
+
+- Enabled in Payload admin config with breakpoints (mobile, tablet, desktop)
+- `RefreshRouteOnSave` component in `src/app/(frontend)/components/RefreshRouteOnSave.tsx` triggers Next.js router refresh on save
+- Uses `@payloadcms/live-preview-react` — add `<RefreshRouteOnSave />` to frontend layouts to activate
+
+```
 ```
 
 ## Conventions
@@ -72,7 +81,7 @@ Plugins are in `src/plugins/`, each in its own file for clean removal:
 ## Commands
 
 ```bash
-pnpm dev              # Start dev server (Turbopack)
+pnpm dev              # Start dev server (Turbopack via --turbo flag)
 pnpm build            # Production build
 pnpm start            # Start production server
 pnpm lint             # ESLint
