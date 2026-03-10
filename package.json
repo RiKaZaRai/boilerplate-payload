@@ -1,0 +1,66 @@
+{
+  "name": "payload-boilerplate",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next dev",
+    "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap",
+    "db:migrate": "payload migrate",
+    "db:migrate:create": "payload migrate:create",
+    "db:seed": "tsx src/seed/index.ts",
+    "db:fresh": "payload migrate:fresh",
+    "payload": "cross-env NODE_OPTIONS=\"--no-deprecation\" payload"
+  },
+  "dependencies": {
+    "@payloadcms/db-postgres": "^3.79.0",
+    "@payloadcms/next": "^3.79.0",
+    "@payloadcms/plugin-ecommerce": "^3.79.0",
+    "@payloadcms/plugin-form-builder": "^3.79.0",
+    "@payloadcms/plugin-import-export": "^3.79.0",
+    "@payloadcms/plugin-multi-tenant": "^3.79.0",
+    "@payloadcms/plugin-nested-docs": "^3.79.0",
+    "@payloadcms/plugin-redirects": "^3.79.0",
+    "@payloadcms/plugin-search": "^3.79.0",
+    "@payloadcms/plugin-seo": "^3.79.0",
+    "@payloadcms/richtext-lexical": "^3.79.0",
+    "@payloadcms/ui": "^3.79.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
+    "graphql": "^16.8.1",
+    "next": "15.4.11",
+    "payload": "^3.79.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "sharp": "^0.32.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "15.4.11",
+    "prettier": "^3.5.0",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "packageManager": "pnpm@10.27.0",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "sharp",
+      "esbuild",
+      "unrs-resolver"
+    ]
+  }
+}
