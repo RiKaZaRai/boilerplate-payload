@@ -1,4 +1,4 @@
-import type { Field, FieldHook } from 'payload';
+import type { FieldHook, TextField } from 'payload';
 
 const formatSlug =
   (fallback: string): FieldHook =>
@@ -28,7 +28,7 @@ const slugify = (val: string): string =>
     .replace(/[\s_]+/g, '-')
     .replace(/^-+|-+$/g, '');
 
-export const slugField = (fieldToUse = 'title', overrides?: Partial<Field>): Field => ({
+export const slugField = (fieldToUse = 'title', overrides?: Record<string, unknown>): TextField => ({
   name: 'slug',
   type: 'text',
   unique: true,
@@ -41,4 +41,4 @@ export const slugField = (fieldToUse = 'title', overrides?: Partial<Field>): Fie
     beforeValidate: [formatSlug(fieldToUse)],
   },
   ...overrides,
-});
+} as TextField);

@@ -13,7 +13,7 @@ export const CallToAction: Block = {
     {
       name: 'links',
       type: 'array',
-      fields: [linkField().fields as any].flat(),
+      fields: [...linkField().fields],
       maxRows: 2,
     },
   ],

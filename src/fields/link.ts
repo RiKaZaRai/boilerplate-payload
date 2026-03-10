@@ -1,8 +1,8 @@
-import type { Field } from 'payload';
+import type { ArrayField, GroupField } from 'payload';
 
 export type LinkType = 'internal' | 'external';
 
-export const linkField = (overrides?: Partial<Field>): Field => ({
+export const linkField = (overrides?: Record<string, unknown>): GroupField => ({
   name: 'link',
   type: 'group',
   fields: [
@@ -43,11 +43,11 @@ export const linkField = (overrides?: Partial<Field>): Field => ({
     },
   ],
   ...overrides,
-});
+} as GroupField);
 
-export const linksField = (overrides?: Partial<Field>): Field => ({
+export const linksField = (overrides?: Record<string, unknown>): ArrayField => ({
   name: 'links',
   type: 'array',
-  fields: [linkField().fields as Field[]].flat(),
+  fields: [...linkField().fields],
   ...overrides,
-});
+} as ArrayField);
