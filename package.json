@@ -33,14 +33,18 @@
     "@payloadcms/richtext-lexical": "^3.79.0",
     "@payloadcms/translations": "^3.79.0",
     "@payloadcms/ui": "^3.79.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
     "cross-env": "^7.0.3",
     "dotenv": "^16.4.7",
     "graphql": "^16.8.1",
+    "lucide-react": "^0.400.0",
     "next": "16.2.0-canary.54",
     "payload": "^3.79.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "sharp": "0.34.2"
+    "sharp": "0.34.2",
+    "tailwind-merge": "^2.5.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.0.0",

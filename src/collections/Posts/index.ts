@@ -23,7 +23,9 @@ export const Posts: CollectionConfig = {
     },
   },
   versions: {
-    drafts: true,
+    drafts: {
+      autosave: { interval: 375 },
+    },
   },
   access: {
     read: authenticatedOrPublished,
