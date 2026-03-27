@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import React from 'react';
 
 import '../globals.css';
+import { RefreshRouteOnSave } from './components/RefreshRouteOnSave';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -17,6 +18,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <RefreshRouteOnSave />
         <div className="flex min-h-screen flex-col">
           <header className="border-b">
             <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
