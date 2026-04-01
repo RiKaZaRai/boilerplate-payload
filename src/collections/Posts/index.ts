@@ -6,6 +6,7 @@ import { Banner } from '@cms/blocks/Banner/config';
 import { Code } from '@cms/blocks/Code/config';
 import { MediaBlock } from '@cms/blocks/MediaBlock/config';
 import { slugField } from '@cms/fields/slug';
+import { autoRedirectOnUnpublish } from '@cms/hooks/autoRedirectOnUnpublish';
 import { populatePublishedAt } from '@cms/hooks/populatePublishedAt';
 
 import { populateAuthors } from './hooks/populateAuthors';
@@ -35,7 +36,7 @@ export const Posts: CollectionConfig = {
   },
   hooks: {
     beforeChange: [populateAuthors],
-    afterChange: [revalidatePost],
+    afterChange: [revalidatePost, autoRedirectOnUnpublish],
     afterDelete: [revalidatePostDelete],
   },
   fields: [

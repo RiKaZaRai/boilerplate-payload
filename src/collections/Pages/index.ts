@@ -9,6 +9,7 @@ import { FormBlock } from '@cms/blocks/Form/config';
 import { Hero } from '@cms/blocks/Hero/config';
 import { MediaBlock } from '@cms/blocks/MediaBlock/config';
 import { slugField } from '@cms/fields/slug';
+import { autoRedirectOnUnpublish } from '@cms/hooks/autoRedirectOnUnpublish';
 import { populatePublishedAt } from '@cms/hooks/populatePublishedAt';
 
 import { revalidatePage, revalidatePageDelete } from './hooks/revalidatePage';
@@ -37,7 +38,7 @@ export const Pages: CollectionConfig = {
     delete: authenticated,
   },
   hooks: {
-    afterChange: [revalidatePage],
+    afterChange: [revalidatePage, autoRedirectOnUnpublish],
     afterDelete: [revalidatePageDelete],
   },
   fields: [
