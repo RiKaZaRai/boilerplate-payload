@@ -1,6 +1,12 @@
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
+  // Sans transformation du JSX, le provider de couverture échoue à parser les
+  // fichiers `.tsx` JAMAIS importés par un test — or ce sont précisément ceux
+  // qu'on veut compter pour 0. Il les excluait alors silencieusement de la
+  // mesure : la couverture aurait menti par omission.
+  plugins: [react()],
   test: {
     environment: 'node',
     include: ['src/**/*.{test,spec}.{ts,tsx}', 'tests/**/*.{test,spec}.{ts,tsx}'],
@@ -28,10 +34,10 @@ export default defineConfig({
       // Quand des tests arrivent, BAISSER ces nombres dans le MÊME commit.
       // Jamais `thresholds.autoUpdate`, qui réécrit ce fichier pendant le run.
       thresholds: {
-        statements: -272,
-        branches: -133,
-        functions: -61,
-        lines: -259,
+        statements: -348,
+        branches: -163,
+        functions: -83,
+        lines: -334,
       },
     },
   },
