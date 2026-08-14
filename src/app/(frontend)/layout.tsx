@@ -1,4 +1,5 @@
 import { Geist, Geist_Mono } from 'next/font/google';
+import Link from 'next/link';
 import React from 'react';
 
 import '../globals.css';
@@ -24,16 +25,16 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
           <div className="flex min-h-screen flex-col">
             <header className="border-b">
               <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
-                <a href="/" className="text-xl font-bold">
+                <Link href="/" className="text-xl font-bold">
                   Site
-                </a>
+                </Link>
                 <div className="flex items-center gap-6">
-                  <a href="/" className="hover:underline">
+                  <Link href="/" className="hover:underline">
                     Home
-                  </a>
-                  <a href="/posts" className="hover:underline">
+                  </Link>
+                  <Link href="/posts" className="hover:underline">
                     Blog
-                  </a>
+                  </Link>
                 </div>
               </nav>
             </header>
