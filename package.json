@@ -8,6 +8,7 @@
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next build",
     "start": "next start",
     "lint": "eslint .",
+    "pretypecheck": "payload generate:types",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "generate:types": "payload generate:types",
@@ -75,7 +76,7 @@
     "vitest": "4.1.10"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=24.0.0"
   },
   "packageManager": "pnpm@10.27.0",
   "pnpm": {

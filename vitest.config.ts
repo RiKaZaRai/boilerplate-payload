@@ -20,7 +20,10 @@ export default defineConfig({
       include: ['src/**/*.{ts,tsx}'],
       exclude: [
         'src/payload-types.ts', // généré par `payload generate:types`
-        'src/app/(payload)/**', // interface d'admin fournie par Payload
+        // Parenthèses ÉCHAPPÉES : sans cela, picomatch les lit comme un groupe
+        // d'extglob et le motif ne correspond à aucun répertoire réel — toutes
+        // les routes d'admin restaient comptées malgré l'exclusion annoncée.
+        'src/app/\\(payload\\)/**', // interface d'admin fournie par Payload
         '**/*.d.ts',
       ],
       // BASELINE — le ratchet de couverture, tenu à la main et VOLONTAIREMENT.
@@ -34,10 +37,10 @@ export default defineConfig({
       // Quand des tests arrivent, BAISSER ces nombres dans le MÊME commit.
       // Jamais `thresholds.autoUpdate`, qui réécrit ce fichier pendant le run.
       thresholds: {
-        statements: -348,
+        statements: -326,
         branches: -163,
-        functions: -83,
-        lines: -334,
+        functions: -77,
+        lines: -312,
       },
     },
   },
