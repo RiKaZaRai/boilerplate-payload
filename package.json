@@ -7,7 +7,8 @@
     "dev": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next dev --turbo",
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
+    "pretypecheck": "payload generate:types",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write .",
     "generate:types": "payload generate:types",
@@ -16,7 +17,14 @@
     "db:migrate:create": "payload migrate:create",
     "db:seed": "tsx src/seed/index.ts",
     "db:fresh": "payload migrate:fresh",
-    "payload": "cross-env NODE_OPTIONS=\"--no-deprecation\" payload"
+    "payload": "cross-env NODE_OPTIONS=\"--no-deprecation\" payload",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run --passWithNoTests",
+    "test:coverage": "vitest run --coverage --passWithNoTests",
+    "cycles": "depcruise --config .dependency-cruiser.cjs src",
+    "dead-code": "knip --files --dependencies",
+    "dead-code:report": "knip",
+    "verify": "pnpm lint && pnpm typecheck && pnpm dead-code && pnpm cycles && pnpm test:coverage && pnpm build"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.80.0",
@@ -48,19 +56,27 @@
     "tailwind-merge": "^2.5.0"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^16.3.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^22.15.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.5",
+    "@vitest/coverage-v8": "4.1.10",
+    "dependency-cruiser": "^18.2.0",
     "eslint": "^9.0.0",
-    "eslint-config-next": "16.2.0-canary.54",
+    "eslint-plugin-sonarjs": "^4.2.0",
+    "knip": "^6.32.2",
+    "postcss-load-config": "^6.0.1",
     "prettier": "^3.5.0",
     "tailwindcss": "^4.0.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.7.0"
+    "typescript": "^5.7.0",
+    "typescript-eslint": "^8.67.0",
+    "vitest": "4.1.10"
   },
   "engines": {
-    "node": ">=20.9.0"
+    "node": "^24 || >=26"
   },
   "packageManager": "pnpm@10.27.0",
   "pnpm": {

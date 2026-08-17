@@ -4,7 +4,13 @@ const safeRevalidate = async (path: string) => {
   try {
     const { revalidatePath, revalidateTag } = await import('next/cache');
     revalidatePath(path);
-    revalidateTag('posts-sitemap');
+    // Next 16 impose un profil de durée de vie en second argument.
+      // `{ expire: 0 }` reproduit exactement le comportement de l'appel
+      // historique à un seul argument : expiration immédiate, donc le
+      // prochain visiteur voit la version publiée. L'alternative `'max'`
+      // servirait d'abord la version périmée (stale-while-revalidate), ce
+      // qu'on ne veut pas juste après une publication.
+      revalidateTag('posts-sitemap', { expire: 0 });
   } catch {
     // Outside of Next.js request context (e.g., seed script)
   }

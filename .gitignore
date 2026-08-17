@@ -34,3 +34,8 @@ pnpm-debug.log*
 # IDE
 .vscode/
 .idea/
+
+# Sortie de la gate de qualité et artefacts locaux — jamais versionnés.
+.verify.log
+coverage/
+tsconfig.tsbuildinfo

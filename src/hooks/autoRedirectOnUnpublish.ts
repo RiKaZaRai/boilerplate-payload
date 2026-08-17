@@ -43,6 +43,9 @@ export const autoRedirectOnUnpublish: CollectionAfterChangeHook = async ({
     if (existing.docs.length === 0) {
       await payload.create({
         collection: 'redirects',
+        // Pas de cast : l'objet correspond au type `Redirect` généré, et un
+        // `as Record<string, unknown>` supprimait justement la vérification qui
+        // garantit qu'il y correspond encore après un changement de collection.
         data: {
           from: fromPath,
           to: {
@@ -50,7 +53,7 @@ export const autoRedirectOnUnpublish: CollectionAfterChangeHook = async ({
             url: '/',
           },
           type: '302',
-        } as Record<string, unknown>,
+        },
       });
 
       payload.logger.info(

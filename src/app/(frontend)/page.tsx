@@ -1,4 +1,5 @@
 import { getPayload } from 'payload';
+import Link from 'next/link';
 import React from 'react';
 
 import config from '@payload-config';
@@ -28,12 +29,12 @@ export default async function HomePage() {
         <p className="mt-4 text-lg text-gray-600">
           Create a page with slug &quot;home&quot; in the admin panel to get started.
         </p>
-        <a
+        <Link
           href="/admin"
           className="mt-6 inline-block rounded bg-black px-6 py-3 text-white hover:bg-gray-800"
         >
           Go to Admin Panel
-        </a>
+        </Link>
       </div>
     );
   }
