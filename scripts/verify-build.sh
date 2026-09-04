@@ -60,6 +60,7 @@ host_port="${mapping##*:}"
 export DATABASE_URL="postgresql://postgres@127.0.0.1:${host_port}/cms_verify"
 export PAYLOAD_SECRET='quality-gate-only-not-for-runtime'
 migration_dir="$(mktemp -d "${TMPDIR:-/tmp}/payload-verify-migrations.XXXXXX")"
+ln -s "$PWD/node_modules" "$migration_dir/node_modules"
 export PAYLOAD_MIGRATION_DIR="$migration_dir"
 
 # Les migrations produites vivent hors du worktree et donnent à la base vierge
