@@ -53,6 +53,11 @@ host_port="${mapping##*:}"
   exit 1
 }
 
-DATABASE_URL="postgresql://postgres@127.0.0.1:${host_port}/cms_verify" \
-  PAYLOAD_SECRET='quality-gate-only-not-for-runtime' \
-  pnpm build
+export DATABASE_URL="postgresql://postgres@127.0.0.1:${host_port}/cms_verify"
+export PAYLOAD_SECRET='quality-gate-only-not-for-runtime'
+
+# Les migrations produites ne vivent que dans le snapshot de gate. Elles
+# donnent à la base vierge le schéma requis par generateStaticParams.
+pnpm payload migrate:create verify
+pnpm payload migrate
+pnpm build
