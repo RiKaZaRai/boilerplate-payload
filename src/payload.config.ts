@@ -44,6 +44,7 @@ export default buildConfig({
     supportedLanguages: { en, fr },
   },
   db: postgresAdapter({
+    migrationDir: process.env.PAYLOAD_MIGRATION_DIR,
     pool: {
       connectionString: process.env.DATABASE_URL || '',
     },
