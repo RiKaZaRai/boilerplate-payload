@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next dev --turbo",
     "build": "cross-env NODE_OPTIONS=\"--no-deprecation --max-old-space-size=8192\" next build",
-    "build:verify": "cross-env PAYLOAD_SECRET=quality-gate-only-not-for-runtime pnpm build",
+    "build:verify": "bash scripts/verify-build.sh",
     "start": "next start",
     "lint": "eslint .",
     "pretypecheck": "payload generate:types",
