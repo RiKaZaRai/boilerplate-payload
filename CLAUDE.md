@@ -91,6 +91,7 @@ pnpm generate:types   # Generate Payload types
 pnpm db:migrate       # Run migrations
 pnpm db:seed          # Seed database
 pnpm db:fresh         # Fresh migration (reset)
+./scripts/gate.sh pnpm verify  # Gate complète (Studio via la doctrine, locale sinon)
 ```
 
 ## Getting Started
