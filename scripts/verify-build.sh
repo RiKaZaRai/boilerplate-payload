@@ -11,14 +11,15 @@ command -v docker >/dev/null 2>&1 || {
 
 container_name="payload-verify-postgres-${PPID:-0}-$$"
 container_id=''
+migration_root=''
 migration_dir=''
 
 cleanup() {
   if [[ -n "$container_id" ]]; then
     docker rm --force "$container_id" >/dev/null 2>&1 || true
   fi
-  if [[ -n "$migration_dir" && -d "$migration_dir" ]]; then
-    find "$migration_dir" -depth -delete >/dev/null 2>&1 || true
+  if [[ -n "$migration_root" && -d "$migration_root" ]]; then
+    find "$migration_root" -depth -delete >/dev/null 2>&1 || true
   fi
 }
 trap cleanup EXIT
@@ -59,9 +60,11 @@ host_port="${mapping##*:}"
 
 export DATABASE_URL="postgresql://postgres@127.0.0.1:${host_port}/cms_verify"
 export PAYLOAD_SECRET='quality-gate-only-not-for-runtime'
-migration_dir="$(mktemp -d "${TMPDIR:-/tmp}/payload-verify-migrations.XXXXXX")"
-printf '{"type":"module"}\n' > "$migration_dir/package.json"
-ln -s "$PWD/node_modules" "$migration_dir/node_modules"
+migration_root="$(mktemp -d "${TMPDIR:-/tmp}/payload-verify.XXXXXX")"
+migration_dir="$migration_root/migrations"
+mkdir "$migration_dir"
+printf '{"type":"module"}\n' > "$migration_root/package.json"
+ln -s "$PWD/node_modules" "$migration_root/node_modules"
 export PAYLOAD_MIGRATION_DIR="$migration_dir"
 
 # Les migrations produites vivent hors du worktree et donnent à la base vierge
